@@ -28,8 +28,8 @@
 			<view class="moneths-content">
 				<view class="moneths-item" 
 						v-for="(item,index) in monthes.items" 
-						:key='item.id' 
-						@click="toDesc(item.thumb)">
+						:key='item.id' >
+						<!-- @click="toDesc(item.thumb)"> -->
 					<!-- 这里用了组件数据传递 -->
 					<go-detail :list="monthes.items" :index="index">
 						<image mode="aspectFill" :src="item.thumb+item.rule.replace('$<Height>',360)"></image>
@@ -84,24 +84,24 @@
 		},
 		methods:{
 			// 查看图片详情
-			toDesc(index){
-				let imgsArray = [];
-				imgsArray.push(index)
-				// 预览图片
-				uni.previewImage({
-					loop: true,
-					urls: imgsArray,
-					longPressActions: {
-						itemList: ['发送给朋友', '保存图片', '收藏'],
-						success: function(data) {
-							console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
-						},
-						fail: function(err) {
-							console.log(err.errMsg);
-						}
-					}
-				});
-			},
+			// toDesc(index){
+			// 	let imgsArray = [];
+			// 	imgsArray.push(index)
+			// 	// 预览图片
+			// 	uni.previewImage({
+			// 		loop: true,
+			// 		urls: imgsArray,
+			// 		longPressActions: {
+			// 			itemList: ['发送给朋友', '保存图片', '收藏'],
+			// 			success: function(data) {
+			// 				console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+			// 			},
+			// 			fail: function(err) {
+			// 				console.log(err.errMsg);
+			// 			}
+			// 		}
+			// 	});
+			// },
 			// 获取接口数据
 			getList(){
 				this.$https({
@@ -109,6 +109,7 @@
 					data: this.patams
 				})
 				.then(res=>{
+					console.log(res)
 					// 判断还有没有下一页数据
 					if(res.res.vertical.length===0){
 						this.hasMore = false
