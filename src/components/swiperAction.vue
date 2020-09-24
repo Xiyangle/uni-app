@@ -1,22 +1,19 @@
 <template>
-	<view @touchstart='handletouchstart' @touchend='handletouchend'>
-		
+	<view class="" @touchstart='handletouchstart' @touchend='handletouchend'>
+		<slot></slot>
 	</view>
 </template>
 
 <script>
 	export default {
-		data() {
-			return {
+		data(){
+			return{
 				// 按下的时间
 				startTime: 0,
 				// 按下的坐标
 				startX: 0,
 				startY: 0
-			};
-		},
-		onLoad() {
-			
+			}
 		},
 		methods:{
 			handletouchstart(event){
@@ -52,16 +49,13 @@
 					return
 				}
 				// 用户做了合法的操作
-				console.log(direction)
+				// console.log(direction)
+				this.$emit("swiperAction",{direction})
 			}
 		}
 	}
 </script>
 
-<style lang="scss">
-	view{
-		background-color: aqua;
-		height: 500rpx;
-		width: 100%;
-	}
+<style scoped>
+	
 </style>

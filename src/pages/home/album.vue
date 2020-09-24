@@ -113,7 +113,7 @@
 					data: this.patams
 				})
 				.then(res=>{
-					console.log(res)
+					// console.log(res)
 					// 判断还有没有下一页数据
 					if(res.res.vertical.length===0){
 						this.hasMore = false
