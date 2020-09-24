@@ -60,7 +60,7 @@
 			// 获取接口数据
 			getList(){
 				this.$https({
-					url: 'http://157.122.54.189:9088/image/v1/wallpaper/album',
+					url: this.baseurl+'/image/v1/wallpaper/album',
 					data: this.params
 				})
 				.then(res=>{

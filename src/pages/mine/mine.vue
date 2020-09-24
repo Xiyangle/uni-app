@@ -1,6 +1,6 @@
 <template>
 	<view>
-		我的
+		{{me}}
 	</view>
 </template>
 
@@ -8,8 +8,14 @@
 	export default {
 		data() {
 			return {
-				
+				me: '观海听涛'
 			};
+		},
+		onLoad() {
+			
+		},
+		methods:{
+			
 		}
 	}
 </script>

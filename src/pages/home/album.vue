@@ -43,8 +43,11 @@
 				<text>热门</text>
 			</view>
 			<view class="hots-content">
-				<view class="hots-item" v-for="item in hots" :key='item.id' @click="toDesc(item.thumb)">
-					<image :src="item.thumb" mode="widthFix"></image>
+				<view class="hots-item" v-for="(item,index) in hots" 
+						:key='item.id'>
+					<go-detail :list="hots" :index="index">
+						<image :src="item.thumb" mode="widthFix"></image>
+					</go-detail>
 				</view>
 			</view>
 		</view>
@@ -105,7 +108,8 @@
 			// 获取接口数据
 			getList(){
 				this.$https({
-					url: 'http://157.122.54.189:9088/image/v3/homepage/vertical',
+					// url: 'http://157.122.54.189:9088/image/v3/homepage/vertical',
+					url: this.baseurl+'/image/v3/homepage/vertical',
 					data: this.patams
 				})
 				.then(res=>{

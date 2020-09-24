@@ -15,7 +15,7 @@
 		<!-- 专辑背景结束 -->
 		<!-- 专辑作者 开始 -->
 		<view class="album-author">
-			<view class="album-author-info">
+			<view class="album-author-info" v-if="album.user">
 				<image :src="album.user.avatar" mode="widthFix"></image>
 				<view class="album-author-name">{{album.user.name}}</view>
 			</view>
@@ -26,8 +26,11 @@
 		<!-- 专辑作者 结束 -->
 		<!-- 列表 开始 -->
 		<view class="album-list">
-			<view class="album-item" v-for="item in wallpaper" :key="item.id">
-				<image :src="item.thumb+item.rule.replace('$<Height>',360)" mode="widthFix"></image>
+			<view class="album-item" 
+					v-for="(item,index) in wallpaper" :key="item.id">
+				<go-detail :list="wallpaper" :index="index">
+					<image :src="item.thumb+item.rule.replace('$<Height>',360)" mode="widthFix"></image>
+				</go-detail>
 			</view>
 		</view>
 		<!-- 列表 结束 -->
@@ -35,7 +38,11 @@
 </template>
 
 <script>
+	import goDetail from '../../components/goDetail.vue'
 	export default{
+		components:{
+			goDetail
+		},
 		data(){
 			return{
 				params:{
@@ -72,11 +79,11 @@
 		methods:{
 			getList(){
 				this.$https({
-					url: `http://157.122.54.189:9088/image/v1/wallpaper/album/${this.id}/wallpaper`,
+					url: this.baseurl+`/image/v1/wallpaper/album/${this.id}/wallpaper`,
 					data: this.params
 				})
 				.then(res=>{
-					console.log(res)
+					// console.log(res)
 					if(Object.keys(this.album).length===0){
 						this.album=res.res.album
 					}
