@@ -1,6 +1,7 @@
 <template>
-	<view @touchstart='handletouchstart' @touchend='handletouchend'>
-		
+	<view>
+		<view @touchstart='handletouchstart' @touchend='handletouchend'></view>
+		<image @click="test" src="https://raw.githubusercontent.com/Orz-3/task/master/10010.png" mode=""></image>
 	</view>
 </template>
 
@@ -19,6 +20,12 @@
 			
 		},
 		methods:{
+			test(){
+				uni.showToast({
+					title: '中国联通',
+					icon: 'none'
+				})
+			},
 			handletouchstart(event){
 				// console.log('手指按下屏幕')
 				// console.log(event.changedTouches[0].clientX)
@@ -58,10 +65,14 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	view{
 		background-color: aqua;
 		height: 500rpx;
 		width: 100%;
+		image{
+			height: 100rpx;
+			width: 100rpx;
+		}
 	}
 </style>

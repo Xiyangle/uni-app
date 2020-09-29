@@ -128,6 +128,11 @@
 				</view>
 			</view>
 		</view> 
+		<!-- 下载图片 开始 -->
+		<view class="download">
+			<view class="download-btn" @click='handleDownload'>下载图片</view>
+		</view>
+		<!-- 下载图片 结束 -->
 	</view>
 </template>
 
@@ -216,6 +221,27 @@
 					icon:"none"
 				   })
 			   }
+			},
+			// 点击下载图片
+			async handleDownload(){
+				// uni.downloadFile()
+				// uni.saveImageToPhotosAlbum({})
+				await uni.showLoading({
+					title: '下载中'
+				})
+				// 1、将远程文件下载到小程序的内存中
+				const result1 = await uni.downloadFile({url:this.imgDetail.img})
+				const {tempFilePath} = result1[1]
+				// 2、将小程序内存中的临时文件下载到本地上
+				const result2 = await uni.saveImageToPhotosAlbum({
+					filePath:tempFilePath
+				})
+				console.log(result2)
+				// 3、提示用户下载成功
+				uni.hideLoading()
+				await uni.showToast({
+					title: '下载成功'
+				})
 			}
 		
 		}
@@ -375,6 +401,25 @@
 			border-bottom: 3rpx solid #f40;
 		}
 	}
+	// 下载图片
+	.download{
+		height: 120rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		.download-btn{
+			width: 90%;
+			height: 80%;
+			background-color: $color;
+			color: #fff;
+			font-size: 50rpx;
+			font-weight: 600;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+	
 	
 	
 	

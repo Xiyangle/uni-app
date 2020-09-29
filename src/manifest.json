@@ -1,6 +1,6 @@
 {
-    "name" : "",
-    "appid" : "",
+    "name" : "tets-app",
+    "appid" : "__UNI__8318DDC",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -47,7 +47,9 @@
             },
             "ios" : {},
             /* ios打包配置 */
-            "sdkConfigs" : {}
+            "sdkConfigs" : {
+                "ad" : {}
+            }
         }
     },
     /* SDK配置 */
@@ -73,20 +75,20 @@
     "mp-qq" : {
         "usingComponents" : true
     },
-	"h5": {
-		    "devServer": {
-			    "disableHostCheck": true,
-			    "proxy": {
-				    "/h5api": {
-					    // 需要被代理的后台地址
-					    "target": "http://157.122.54.189:9088/",
-					    "changeOrigin": true,
-					    "secure": false,
-					    "pathRewrite": {
-						    "^/h5api": "/"
-					    }
-				       }
-			       }
-			}
-		}
+    "h5" : {
+        "devServer" : {
+            "disableHostCheck" : true,
+            "proxy" : {
+                "/h5api" : {
+                    // 需要被代理的后台地址
+                    "target" : "http://157.122.54.189:9088/",
+                    "changeOrigin" : true,
+                    "secure" : false,
+                    "pathRewrite" : {
+                        "^/h5api" : "/"
+                    }
+                }
+            }
+        }
+    }
 }

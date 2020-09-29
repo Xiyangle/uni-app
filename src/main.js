@@ -8,7 +8,8 @@ Vue.prototype.$https = request
 
 // 自定义全局共享数据 通过vue的原型来实现
 // #ifdef H5
-Vue.prototype.baseurl = 'h5api'
+// Vue.prototype.baseurl = 'h5api'
+Vue.prototype.baseurl = 'http://157.122.54.189:9088'
 // #endif
 
 // #ifdef MP-WEIXIN
